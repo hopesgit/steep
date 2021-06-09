@@ -217,6 +217,17 @@
           null
         ]
       },
+      "/Users/hope/turing/4module/project/take-home/the_tea/spec/factories/subscriptions.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null
+        ]
+      },
       "/Users/hope/turing/4module/project/take-home/the_tea/spec/factories/teas.rb": {
         "lines": [
           1,
@@ -253,6 +264,46 @@
       "/Users/hope/turing/4module/project/take-home/the_tea/app/models/application_record.rb": {
         "lines": [
           1,
+          1,
+          null
+        ]
+      },
+      "/Users/hope/turing/4module/project/take-home/the_tea/spec/models/subscription_spec.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          1,
+          2,
+          2,
+          null,
+          null,
+          1,
+          2,
+          2,
+          2,
+          null,
+          null,
+          1,
+          null,
+          null,
+          null,
+          1,
+          null,
+          null,
+          null
+        ]
+      },
+      "/Users/hope/turing/4module/project/take-home/the_tea/app/models/subscription.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          null,
           1,
           null
         ]
@@ -299,6 +350,6 @@
         ]
       }
     },
-    "timestamp": 1623243056
+    "timestamp": 1623254393
   }
 }

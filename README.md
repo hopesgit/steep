@@ -1,8 +1,13 @@
 # Steep
 
+## Contributors
+* Hope McGee | [LinkedIn](linkedin.com/in/hope-mcgee)
+
 ## Description
 
 Steep is Ruby on Rails API-only backend that allows a user (customer) to subscribe to different varieties of teas.
+
+This may implement the [Tea API]().
 
 ## Versioning
 * Ruby version: 2.5.3
@@ -35,5 +40,5 @@ POST '/api/v1/unsubscribe'
 ```
 GET '/api/v1/subscriptions'
 ```
-* This provides a way to see all of a customer's subscriptions, active and inactive. 
+* This provides a way to see all of a customer's subscriptions, active and inactive.
 * This requires "customer_id" query param.

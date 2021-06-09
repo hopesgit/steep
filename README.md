@@ -1,24 +1,44 @@
-# README
+# Steep
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Contributors
+* Hope McGee | [LinkedIn](linkedin.com/in/hope-mcgee)
 
-Things you may want to cover:
+## Description
 
-* Ruby version
+Steep is Ruby on Rails API-only backend that allows a user (customer) to subscribe to different varieties of teas.
 
-* System dependencies
+This may implement the [Tea API](https://tea-api-vic-lo.herokuapp.com/).
 
-* Configuration
+## Versioning
+* Ruby version: 2.5.3
+* Rails version: 5.2.6
 
-* Database creation
+## Setup
 
-* Database initialization
+Clone the app using the "Code" button above to download it to your machine. After you've done this, you can use ``` bundle install ``` and ``` rails db:setup ``` in your terminal/shell to set up the app locally.
 
-* How to run the test suite
+## Testing
 
-* Services (job queues, cache servers, search engines, etc.)
+Testing is provided using RSpec. Test status can be checked by running ``` bundle exec rspec ``` in your terminal/shell once you've followed the setup above.
 
-* Deployment instructions
+## Endpoints
 
-* ...
+```
+POST '/api/v1/subscribe'
+```
+* This provides a way for a customer to subscribe to a variety of tea.
+* This can also reactivate a subscription for a previously-unsubscribed tea.
+* This requires "customer_id" and "tea_id" query params.
+
+```
+POST '/api/v1/unsubscribe'
+```
+* This provides a way for a customer to unsubscribe from a variety of tea.
+* This requires "customer_id" and "tea_id" query params.
+* This responds with "null" if there is no active subscription for that customer and tea data set.
+
+```
+GET '/api/v1/subscriptions'
+```
+* This provides a way to see all of a customer's subscriptions, active and inactive.
+* This requires "customer_id" query param.

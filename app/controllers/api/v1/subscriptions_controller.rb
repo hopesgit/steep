@@ -1,4 +1,11 @@
 class Api::V1::SubscriptionsController < ApplicationController
+  def show
+    customer = Customer.find(params[:customer_id])
+    if customer
+      render json: SubscriptionSerializer.new(customer.subscriptions).serialized_json
+    end
+  end
+
   def create
     sub = Subscription.find_by(customer_id: params[:customer_id], tea_id: params[:tea_id])
     if sub

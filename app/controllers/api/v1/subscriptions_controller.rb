@@ -20,11 +20,7 @@ class Api::V1::SubscriptionsController < ApplicationController
     if sub && sub.active?
       sub.status = 1
       sub.save
-      render json: SubscriptionSerializer.new(sub).serialized_json
-    elsif !sub
-      render json: SubscriptionSerializer.new(sub).serialized_json, status: 404
-    else
-      render json: SubscriptionSerializer.new(sub).serialized_json
     end
+    render json: SubscriptionSerializer.new(sub).serialized_json
   end
 end

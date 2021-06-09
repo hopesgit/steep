@@ -52,7 +52,7 @@ describe "When a POST request is sent to /api/v1/unsubscribe" do
 
       post '/api/v1/unsubscribe', params: { customer_id: customer.id, tea_id: tea.id }
 
-      expect(response).to have_http_status(404)
+      expect(response).to have_http_status(200)
 
 
       parsed_response = JSON.parse(response.body, symbolize_names: true)
@@ -61,5 +61,29 @@ describe "When a POST request is sent to /api/v1/unsubscribe" do
     end
 
     # sad path
+    it 'cant edit a sub without a valid customer or tea id' do
+      customer = create(:customer)
+      tea = create(:tea)
+
+      post '/api/v1/unsubscribe', params: { tea_id: tea.id }
+      parsed_response = JSON.parse(response.body, symbolize_names: true)
+      expect(parsed_response[:data]).to eq(nil)
+
+      post '/api/v1/unsubscribe', params: { customer_id: customer.id }
+      parsed_response = JSON.parse(response.body, symbolize_names: true)
+      expect(parsed_response[:data]).to eq(nil)
+
+      post '/api/v1/unsubscribe'
+      parsed_response = JSON.parse(response.body, symbolize_names: true)
+      expect(parsed_response[:data]).to eq(nil)
+
+      post '/api/v1/unsubscribe', params: { customer_id: "dogs", tea_id: "bones" }
+      parsed_response = JSON.parse(response.body, symbolize_names: true)
+      expect(parsed_response[:data]).to eq(nil)
+
+      post '/api/v1/unsubscribe', params: { customer_id: "❤️", tea_id: tea.id }
+      parsed_response = JSON.parse(response.body, symbolize_names: true)
+      expect(parsed_response[:data]).to eq(nil)
+    end
   end
 end

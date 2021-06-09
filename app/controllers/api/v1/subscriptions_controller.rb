@@ -2,7 +2,9 @@ class Api::V1::SubscriptionsController < ApplicationController
   def create
     sub = Subscription.find_by(customer_id: params[:customer_id], tea_id: params[:tea_id])
     if sub
-      sub.status == 0
+      sub.status = 0
+      sub.save
+      render json: SubscriptionSerializer.new(sub).serialized_json
     elsif !sub
       new_sub = Subscription.create!(
         customer_id: params[:customer_id],

@@ -3,7 +3,10 @@ require 'rails_helper'
 describe "When a POST request is sent to /api/v1/subscribe" do
   describe "with the customer id and tea id" do
     it 'creates the subscription' do
-      post '/api/v1/subscribe', params: { customer_id: 25, tea_id: 5 }
+
+      customer = create(:customer)
+      tea = create(:tea)
+      post '/api/v1/subscribe', params: { customer_id: customer.id, tea_id: tea.id }
 
       expect(response).to have_http_status(:success)
 
@@ -19,10 +22,9 @@ describe "When a POST request is sent to /api/v1/subscribe" do
       expect(parsed_response[:data][:attributes]).to have_key(:tea_id)
       expect(parsed_response[:data][:attributes]).to have_key(:status)
 
-      expect(parsed_response[:data][:attributes][:customer_id]).to eq(25)
-      expect(parsed_response[:data][:attributes][:tea_id]).to eq(5)
+      expect(parsed_response[:data][:attributes][:customer_id]).to eq(customer.id)
+      expect(parsed_response[:data][:attributes][:tea_id]).to eq(tea.id)
       expect(parsed_response[:data][:attributes][:status]).to eq("active")
-
     end
   end
 end

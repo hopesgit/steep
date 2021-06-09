@@ -4,7 +4,7 @@ class Api::V1::SubscriptionsController < ApplicationController
     if sub
       sub.status == 0
     elsif !sub
-      new_sub = Subscription.create(
+      new_sub = Subscription.create!(
         customer_id: params[:customer_id],
         tea_id: params[:tea_id],
         status: 0

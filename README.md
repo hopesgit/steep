@@ -7,7 +7,7 @@
 
 Steep is Ruby on Rails API-only backend that allows a user (customer) to subscribe to different varieties of teas.
 
-This may implement the [Tea API]().
+This may implement the [Tea API](https://tea-api-vic-lo.herokuapp.com/).
 
 ## Versioning
 * Ruby version: 2.5.3

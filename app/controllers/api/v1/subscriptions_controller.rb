@@ -13,12 +13,17 @@ class Api::V1::SubscriptionsController < ApplicationController
       sub.save
       render json: SubscriptionSerializer.new(sub).serialized_json
     elsif !sub
-      new_sub = Subscription.create!(
+      new_sub = Subscription.new(
         customer_id: params[:customer_id],
         tea_id: params[:tea_id],
         status: 0
       )
-      render json: SubscriptionSerializer.new(new_sub).serialized_json
+      case new_sub.save
+      when false
+        render json: {message: "Incorrect or not all necessary params supplied."}.to_json, status: 400
+      when true
+        render json: SubscriptionSerializer.new(new_sub).serialized_json
+      end
     end
   end
 

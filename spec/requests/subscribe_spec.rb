@@ -47,11 +47,25 @@ describe "When a POST request is sent to /api/v1/subscribe" do
       customer = create(:customer)
       tea = create(:tea)
 
-      expect {post '/api/v1/subscribe', params: { tea_id: tea.id } }.to raise_error(ActiveRecord::RecordInvalid)
-      expect {post '/api/v1/subscribe', params: { customer_id: customer.id } }.to raise_error(ActiveRecord::RecordInvalid)
-      expect {post '/api/v1/subscribe' }.to raise_error(ActiveRecord::RecordInvalid)
-      expect {post '/api/v1/subscribe', params: { customer_id: "dogs", tea_id: "bones" } }.to raise_error(ActiveRecord::RecordInvalid)
-      expect {post '/api/v1/subscribe', params: { customer_id: "❤️", tea_id: tea.id } }.to raise_error(ActiveRecord::RecordInvalid)
+      post '/api/v1/subscribe', params: { tea_id: tea.id }
+      parsed_response = JSON.parse(response.body, symbolize_names: true)
+      expect(parsed_response[:message]).to eq("Incorrect or not all necessary params supplied.")
+
+      post '/api/v1/subscribe', params: { customer_id: customer.id }
+      parsed_response = JSON.parse(response.body, symbolize_names: true)
+      expect(parsed_response[:message]).to eq("Incorrect or not all necessary params supplied.")
+
+      post '/api/v1/subscribe'
+      parsed_response = JSON.parse(response.body, symbolize_names: true)
+      expect(parsed_response[:message]).to eq("Incorrect or not all necessary params supplied.")
+
+      post '/api/v1/subscribe', params: { customer_id: "dogs", tea_id: "bones" }
+      parsed_response = JSON.parse(response.body, symbolize_names: true)
+      expect(parsed_response[:message]).to eq("Incorrect or not all necessary params supplied.")
+
+      post '/api/v1/subscribe', params: { customer_id: "❤️", tea_id: tea.id }
+      parsed_response = JSON.parse(response.body, symbolize_names: true)
+      expect(parsed_response[:message]).to eq("Incorrect or not all necessary params supplied.")
     end
   end
 end

@@ -8,6 +8,7 @@ RSpec.describe Customer, type: :model do
 
   describe 'validations' do
     it { should validate_presence_of :email }
+    subject { Customer.new(first_name: "Bob", last_name: "Bobberson", email: "bob@bob.bob", address: "Bob St, Bobtown, BO") }
     it { should validate_uniqueness_of :email }
     it { should validate_presence_of :first_name }
     it { should validate_presence_of :last_name }
